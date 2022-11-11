@@ -25,6 +25,7 @@ for (const solution of [secretSolution]) {
       expect(solution(1)).toEqual([0, 1]);
     });
     // write at least 5 more tests ...
+    it('')
   });
 }
 
