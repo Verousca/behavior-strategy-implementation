@@ -1,6 +1,6 @@
 // #todo
 
-'use strict';
+"use strict";
 
 /**
  * builds an array counting up from 0 to `max`
@@ -11,21 +11,39 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
+const number = (max = 0) => {
+  if (max < 0) {
+    throw new RangeError("it should not be less than 0");
+  }
+  if (!Number.isInteger(max)) {
+    throw new TypeError("it should be a integer");
+  }
+  const result = [];
+  for (let i = 0; i <= max; i++) {
+    result.push(i);
+  }
+  return result;
+};
+
+for (const solution of [secretSolution, number]) {
   // the main test suite for the function
-  describe(solution.name + ': counts up from 0', () => {
-    it('default parameter is 0 -> [0]', () => {
+  describe(solution.name + ": counts up from 0", () => {
+    it("default parameter is 0 -> [0]", () => {
       const actual = solution();
       expect(actual).toEqual([0]);
     });
-    it('0 -> [0]', () => {
+    it("0 -> [0]", () => {
       expect(solution(0)).toEqual([0]);
     });
-    it('1 -> [0, 1]', () => {
+    it("1 -> [0, 1]", () => {
       expect(solution(1)).toEqual([0, 1]);
     });
-    // write at least 5 more tests ...
-    it('')
+    it("should throw TypeError when start is not  a number", () => {
+      expect(() => solution("hello")).toThrow(TypeError);
+    });
+    it("should throw RangeError when start is less than 0", () => {
+      expect(() => solution(-2)).toThrow(RangeError);
+    });
   });
 }
 
